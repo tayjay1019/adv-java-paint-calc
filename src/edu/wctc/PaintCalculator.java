@@ -1,5 +1,6 @@
 package edu.wctc;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,10 +30,10 @@ public class PaintCalculator {
                         createRoom();
                         break;
                     case 2:
-                        // writeFile();
+                        new RoomWriter().writeRoomFile("room.dat", roomList);
                         break;
                     case 3:
-                        // readFile();
+                        roomList = new RoomReader().readRoomFile("room.dat");
                         break;
                     case 4:
                         printRooms();
@@ -41,8 +42,11 @@ public class PaintCalculator {
                         System.out.println("Goodbye");
                         System.exit(0);
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException n) {
                 System.out.println("Invalid choice");
+            }
+            catch ( IOException e) {
+                e.printStackTrace();
             }
         }
 
